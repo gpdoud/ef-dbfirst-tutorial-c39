@@ -2,11 +2,43 @@
 using ef_dbfirst_tutorial;
 using ef_dbfirst_tutorial.Models;
 
-var custCtrl = new CustomersController();
+using Microsoft.EntityFrameworkCore;
 
-var success = await custCtrl.DeleteAsync(38);
+var ordCtrl = new OrdersController();
+var newOrd = new Order() { Id = 0, CustomerId = 1, Date = DateTime.Now, Description = "TEST" };
 
-Console.WriteLine(success ? "Ok" : "Failed");
+var ord = await ordCtrl.InsertAsync(newOrd);
+Console.WriteLine(ord);
+
+//var startingNumber = 100;
+
+//var sum = await SumNumber1to10();
+
+//var total = sum + startingNumber;
+
+//Console.WriteLine("Done ...");
+
+//async Task<int> SumNumber1to10() {
+//    await _context.Customers.ToListAsync();
+//    int sum = 0;
+//    sum += 1;
+//    sum += 2;
+//    sum += 3;
+//    sum += 4;
+//    sum += 5;
+//    sum += 6;
+//    sum += 7;
+//    sum += 8;
+//    sum += 9;
+//    sum += 10;
+//    return sum;
+//}
+
+//var custCtrl = new CustomersController();
+
+//var success = await custCtrl.DeleteAsync(38);
+
+//Console.WriteLine(success ? "Ok" : "Failed");
 
 
 

@@ -16,4 +16,8 @@ public partial class Order
     public virtual Customer? Customer { get; set; }
 
     public virtual ICollection<OrderLine> OrderLines { get; } = new List<OrderLine>();
+
+    public override string ToString() {
+        return $"ORDER: Id:{Id}, Date:{Date}, Desc:{Description}";
+    }
 }
