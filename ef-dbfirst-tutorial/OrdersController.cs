@@ -19,11 +19,16 @@ public class OrdersController { // beginning of class
     }
 
     public async Task<List<Order>> GetAllAsync() {
-        return await _context.Orders.ToListAsync();
+        return await _context.Orders
+                                .Include(x => x.Customer)
+                                .ToListAsync();
     }
 
     public async Task<Order?> GetByIdAsync(int id) {
-        return await _context.Orders.FindAsync(id);
+        return await _context.Orders
+                                .Include(x => x.Customer)
+                                .Include(x => x.OrderLines)
+                                .SingleOrDefaultAsync(x => x.Id == id);
     }
 
     public async Task<Order> InsertAsync(Order order) {

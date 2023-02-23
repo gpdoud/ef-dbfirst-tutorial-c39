@@ -5,10 +5,16 @@ using ef_dbfirst_tutorial.Models;
 using Microsoft.EntityFrameworkCore;
 
 var ordCtrl = new OrdersController();
-var newOrd = new Order() { Id = 0, CustomerId = 1, Date = DateTime.Now, Description = "TEST" };
 
-var ord = await ordCtrl.InsertAsync(newOrd);
+var ord = await ordCtrl.GetByIdAsync(1);
+
 Console.WriteLine(ord);
+
+var orderTotal = ord.OrderLines.Sum(x => x.Price * x.Quantity);
+
+Console.WriteLine($"Order total is {orderTotal:C}");
+
+//ordLines.ForEach(ord => Console.WriteLine(ord));
 
 //var startingNumber = 100;
 

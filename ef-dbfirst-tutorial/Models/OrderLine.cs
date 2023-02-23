@@ -18,4 +18,9 @@ public partial class OrderLine
     public decimal Price { get; set; }
 
     public virtual Order Orders { get; set; } = null!;
+
+    public override string ToString() {
+        return $"ORDLINE: Id={Id,2}, Product={Product,-20}, Desc={Description,-20}, " +
+                $"Quantity={Quantity,-5}, Price={Price,10:C}, OrdersId={OrdersId}";
+    }
 }

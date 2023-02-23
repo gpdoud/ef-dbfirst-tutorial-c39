@@ -15,9 +15,14 @@ public partial class Order
 
     public virtual Customer? Customer { get; set; }
 
-    public virtual ICollection<OrderLine> OrderLines { get; } = new List<OrderLine>();
+    public virtual ICollection<OrderLine> OrderLines { get; } = new List<OrderLine>(); 
 
     public override string ToString() {
-        return $"ORDER: Id:{Id}, Date:{Date}, Desc:{Description}";
+        var message = $"ORDER: Id:{Id}, CustId:{CustomerId}, Date:{Date}, Desc:{Description}, " +
+            $"Customer Name:{Customer.Name}";
+        foreach(var ol in OrderLines) {
+            message  += $"\nORDERLINE: Id:{ol.Id} | Product:{ol.Product} | Price:{ol.Price} | Quantity:{ol.Quantity}";
+        }
+        return message;
     }
 }
